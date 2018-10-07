@@ -12,7 +12,12 @@ getStdin().then(val => {
         if (err) {
             return console.error(err);
         }
-        if(isArray(res) || isObject(res)) {
+
+        if (!res) {
+            return;
+        }
+
+        if (isArray(res) || isObject(res)) {
             console.log(JSON.stringify(res));
         } else {
             process.stdout.write(res);
@@ -23,9 +28,9 @@ getStdin().then(val => {
 });
 
 const isArray = (a) => {
-    return (!!a) && (a.constructor === Array);
+    return a.constructor === Array;
 };
 
 const isObject = (a) => {
-    return (!!a) && (a.constructor === Object);
+    return a.constructor === Object;
 };
